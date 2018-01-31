@@ -2,6 +2,7 @@
 ```
 git clone https://github.com/schemar/solarc-theme.git ~/Documents/solarc-theme.git
 cd ~/Documents/solarc-theme
+sudo apt install libgtk-3-dev
 ./autogen.sh --prefix=/usr
 sudo make install
 ```
