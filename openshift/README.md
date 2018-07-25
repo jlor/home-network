@@ -6,6 +6,7 @@
 - Using AWS Route53, with the domain setup already
 
 # How to run
+Log in to the OpenShift host as root
 `curl https://raw.githubusercontent.com/jlor/home-network/master/openshift/install-openshift.sh | /bin/bash`
 This will prompt you for information such as domainname, username, password and IP address.
 
