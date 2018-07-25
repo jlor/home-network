@@ -154,6 +154,9 @@ envsubst < inventory.tmp > inventory.ini
 try ansible-playbook -i inventory.ini openshift-ansible/playbooks/prerequisites.yml
 try ansible-playbook -i inventory.ini openshift-ansible/playbooks/deploy_cluster.yml
 
+# Setup PATH so root can see oc CLI
+export PATH=$PATH:/usr/local/bin
+
 # Setup user
 htpasswd -b /etc/origin/master/htpasswd ${USERNAME} ${PASSWORD}
 oc adm policy add-cluster-role-to-user cluster-admin ${USERNAME}
