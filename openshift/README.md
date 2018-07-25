@@ -12,6 +12,8 @@ Currently only AWS Route53 is supported, however it should be simple to change t
 - 4 CPU cores (20 pods/core)
 - Using AWS Route53, with the domain setup already
 
+The script will install logging if the system has > 8Gb memory and metrics if the system has > 4Gb memory.
+
 ## How to run
 Log in to the OpenShift host as root
 
