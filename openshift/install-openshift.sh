@@ -46,13 +46,13 @@ try() { "$@" || die "cannot $*"; }
 SCRIPT_REPO="https://raw.githubusercontent.com/jlor/home-network/master/openshift/"
 
 # Setup AWS keys
-if [ "$AWS_ACCESS_KEY" == "" ]; then
+if [ "$AWS_ACCESS_KEY" = "" ]; then
 	read -rp "AWS_ACCESS_KEY: " choice;
 	if [ "$choice" != "" ]; then
 		export AWS_ACCESS_KEY="$choice";
 	fi
 fi
-if [ "$AWS_SECRET_ACCESS_KEY" == "" ]; then
+if [ "$AWS_SECRET_ACCESS_KEY" = "" ]; then
 	read -rp "AWS_SECRET_ACCESS_KEY: " choice;
 	if [ "$choice" != "" ]; then
 		export AWS_SECRET_ACCESS_KEY="$choice";
