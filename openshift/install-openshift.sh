@@ -10,63 +10,64 @@ export DOMAIN=${DOMAIN:="$(curl -s ipinfo.io/ip).nip.io"}
 export IP=${IP:="$(ip route get 8.8.8.8 | awk '{print $NF; exit}')"}
 export USERNAME=${USERNAME:="$(whoami)"}
 export PASSWORD=${PASSWORD:="$(< /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-10}; echo;)"}
+export SCRIPT_REPO=${SCRIPT_REPO:="https://raw.githubusercontent.com/jlor/home-network/master/openshift/"}
 export AWS_ACCESS_KEY=${AWS_ACCESS_KEY:=""}
 export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:=""}
 export INTERACTIVE=${INTERACTIVE:="true"}
-
-if [ "$INTERACTIVE" = "true" ]; then
-	read -rp "Domain: ($DOMAIN): " choice;
-	if [ "$choice" != "" ]; then
-		export DOMAIN="$choice";
-	fi
-
-	read -rp "IP: ($IP): " choice;
-	if [ "$choice" != "" ]; then
-		export IP="$choice";
-	fi
-
-	read -rp "Username: ($USERNAME): " choice;
-	if [ "$choice" != "" ]; then
-		export USERNAME="$choice";
-	fi
-
-	read -rp "Password: ($PASSWORD): " choice;
-	if [ "$choice" != "" ]; then
-		export PASSWORD="$choice";
-	fi
-
-	echo
-fi
 
 # Give us our three finger claw
 shout() { echo "$0: $*" >&2; }
 die() { shout "$*"; exit 111; }
 try() { "$@" || die "cannot $*"; }
-# And our script repository for future use
-SCRIPT_REPO="https://raw.githubusercontent.com/jlor/home-network/master/openshift/"
+
+if [[ "$INTERACTIVE" -eq "true" ]] ; then
+	read -rp "Domain: ($DOMAIN): " choice;
+	if [[ "$choice" != "" ]] ; then
+		export DOMAIN="$choice";
+	fi
+
+	read -rp "IP: ($IP): " choice;
+	if [[ "$choice" != "" ]] ; then
+		export IP="$choice";
+	fi
+
+	read -rp "Username: ($USERNAME): " choice;
+	if [[ "$choice" != "" ]] ; then
+		export USERNAME="$choice";
+	fi
+
+	read -rp "Password: ($PASSWORD): " choice;
+	if [[ "$choice" != "" ]] ; then
+		export PASSWORD="$choice";
+	fi
+
+	echo ;
+
+fi
 
 # Setup AWS keys
-if [ "$AWS_ACCESS_KEY" = "" ]; then
+if [[ "$AWS_ACCESS_KEY" -eq "" ]] ; then
 	read -rp "AWS_ACCESS_KEY: " choice;
-	if [ "$choice" != "" ]; then
+	if [[ "$choice" != "" ]] ; then
 		export AWS_ACCESS_KEY="$choice";
 	fi
 fi
-if [ "$AWS_SECRET_ACCESS_KEY" = "" ]; then
+
+if [[ "$AWS_SECRET_ACCESS_KEY" -eq "" ]] ; then
 	read -rp "AWS_SECRET_ACCESS_KEY: " choice;
-	if [ "$choice" != "" ]; then
+	if [[ "$choice" != "" ]] ; then
 		export AWS_SECRET_ACCESS_KEY="$choice";
 	fi
 fi
 
 
 printf "===========================================================\n"
-printf "== Domain: $DOMAIN\n"
-printf "== IP: $IP\n"
-printf "== Username: $USERNAME\n"
-printf "== Password: $PASSWORD\n"
+printf "== Domain: ${DOMAIN}\n"
+printf "== IP: ${IP}\n"
+printf "== Username: ${USERNAME}\n"
+printf "== Password: ${PASSWORD}\n"
 printf "\n"
-prinft "== AWS_ACCESS_KEY: $AWS_ACCESS_KEY\n"
+printf "== AWS_ACCESS_KEY: ${AWS_ACCESS_KEY}\n"
 printf "== AWS_SECRET_ACCESS_KEY (last 4): ${AWS_SECRET_ACCESS_KEY: -4}\n"
 printf "===========================================================\n"
 
