@@ -11,7 +11,7 @@ export IP=${IP:="$(ip route get 8.8.8.8 | awk '{print $NF; exit}')"}
 export USERNAME=${USERNAME:="$(whoami)"}
 export PASSWORD=${PASSWORD:="$(< /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-10}; echo;)"}
 export AWS_ACCESS_KEY=${AWS_ACCESS_KEY:=""}
-export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:=""}"
+export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:=""}
 export INTERACTIVE=${INTERACTIVE:="true"}
 
 if [ "$INTERACTIVE" = "true" ]; then
