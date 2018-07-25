@@ -74,7 +74,7 @@ yum update -y
 # Install dependencies
 yum install -y git docker net-tools wget zile nano bind-utils uptables-services bridge-utils bash-completion\
         kexec-tools sos psacct openssl-devel httpd-tools NetworkManager python-cryptography python2-pip\
-        python-devel python-passlib java-1.8.0-openjdk-headline "@Development Tools"
+        python-devel python-passlib java-1.8.0-openjdk-headless "@Development Tools"
 
 # add EPEL repo and disable by default
 yum -y install epel-release
