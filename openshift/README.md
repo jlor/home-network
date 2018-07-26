@@ -31,4 +31,11 @@ export AWS_ACCESS_KEY_ID=AKIAxxxxxxxxxxxxxxx
 export AWS_SECRET_ACCESS_KEY=<insert your key here>
 curl https://raw.githubusercontent.com/jlor/home-network/master/openshift/install-openshift.sh | INTERACTIVE=false /bin/bash
 ```
-##
+## Todo
+- Create and test a way to update certificates on API and routes (from `openshift-ansible` playbook: `redeploy_certificates.yaml`)
+- Change large parts of the install-openshift.sh script to make use of ansible (software install, SSH keys, etc.)
+- Update to OpenShift 3.10
+
+## Notes
+This project is a living project. I tear down my infrastructure often to try something new.
+As a consequence this project tries to automate as much as possible. The hope is to create code-as-documentation and fire-and-forget scripts.
