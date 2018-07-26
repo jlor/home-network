@@ -33,7 +33,7 @@ curl https://raw.githubusercontent.com/jlor/home-network/master/openshift/instal
 ```
 ## Todo
 - Create and test a way to update certificates on API and routes (from `openshift-ansible` playbook: `redeploy_certificates.yaml`)
-- Find out why the ansible script fails on API server restart
+- Find out why the ansible script fails on Service Catalog Install during API server restart
 - Test the script on Atomic Host
 - Change large parts of the install-openshift.sh script to make use of ansible (software install, SSH keys, etc.)
 - Update to OpenShift 3.10
