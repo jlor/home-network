@@ -93,7 +93,7 @@ yum -y --enablerepo=epel install ansible pyOpenSSL
 # Get Openshift-Ansible git repo -- for now limited to version 3.9
 [ ! -d openshift-ansible ] && git clone --single-branch -b release-3.9 https://github.com/openshift/openshift-ansible.git
 # install ACME.sh
-curl https://get.acme.sh | sh
+curl -s https://get.acme.sh | sh
 
 # Make sure AWS is setup
 if [ "$AWS_ACCESS_KEY_ID" = "" ] || [ "$AWS_SECRET_ACCESS_KEY" = ""]; then
@@ -105,7 +105,7 @@ fi
 /root/.acme.sh/acme.sh --issue -d *.apps.${DOMAIN} --dns dns_aws
 
 # Setup automatic refrehs of certs every 60 days
-curl -o /tmp/refresh-openshift-cert.tmp $SCRIPT_REPO/refresh-openshift-cert.sh
+curl -so /tmp/refresh-openshift-cert.tmp $SCRIPT_REPO/refresh-openshift-cert.sh
 envsubst < /tmp/refresh-openshift-cert.tmp > /root/refresh-openshift-cert.sh
 chmod +x /root/refresh-openshift-cert.sh
 grep 'refresh-openshift-cert.sh' /etc/crontab || echo "0 0 */60 * * /root/refresh-openshift-cert.sh" >> /etc/crontab
@@ -144,7 +144,7 @@ if [ "$memory" -lt "8388608" ]; then
 fi
 
 # Get Inventory file and substitute variables
-curl -o inventory.tmp $SCRIPT_REPO/inventory.ini
+curl -so inventory.tmp $SCRIPT_REPO/inventory.ini
 envsubst < inventory.tmp > inventory.ini
 
 # Install Openshift!
@@ -162,7 +162,7 @@ oc adm policy add-cluster-role-to-user cluster-admin ${USERNAME}
 systemctl restart origin-master-api
 
 # Setup simple PVs
-curl $SCRIPT_REPO/vol.yaml
+curl -so vol.yaml $SCRIPT_REPO/vol.yaml
 for i in `seq 1 200`;
 do
     DIRNAME="vol$i"
