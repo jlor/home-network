@@ -1,3 +1,6 @@
+# DEPRECATED
+See https://github.com/jlor/installcentos
+
 # Openshift 3.9 + LetsEncrypt certificates
 Heavily influenced by / copied from [Grant Shipley](https://github.com/gshipley/installcentos/).
 
